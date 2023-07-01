@@ -24,6 +24,7 @@ public interface StackSpecificItem extends ItemConvertible {
         return asItem().isSuitableFor(state);
     }
 
+    // TODO: brewing, banner duplication, book cloning
     @Nullable
     default Item getRecipeRemainder(ItemStack stack) {
         return asItem().getRecipeRemainder();

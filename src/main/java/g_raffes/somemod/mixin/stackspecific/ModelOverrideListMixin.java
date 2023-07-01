@@ -1,6 +1,6 @@
 package g_raffes.somemod.mixin.stackspecific;
 
-import g_raffes.somemod.mixin.api.ItemStackHolder;
+import g_raffes.somemod.mixin.api.StaticHolder;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.world.ClientWorld;
@@ -18,6 +18,6 @@ abstract class ModelOverrideListMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/item/ModelPredicateProviderRegistry;get(Lnet/minecraft/item/Item;Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/item/ModelPredicateProvider;")
     )
     private void onModelPredicateProviderGet(BakedModel model, ItemStack stack, ClientWorld world, LivingEntity entity, int seed, CallbackInfoReturnable<BakedModel> ci) {
-        ItemStackHolder.Static.stack1 = stack;
+        StaticHolder.stack1 = stack;
     }
 }

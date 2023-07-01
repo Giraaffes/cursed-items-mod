@@ -1,7 +1,7 @@
 package g_raffes.somemod.mixin.stackspecific;
 
 import g_raffes.somemod.item.api.StackSpecificItem;
-import g_raffes.somemod.mixin.api.ItemStackHolder;
+import g_raffes.somemod.mixin.api.StaticHolder;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ abstract class ModelPredicateProviderRegistryMixin {
     )
     private static int redirectGetMaxDamage(Item item) {
         if (item instanceof StackSpecificItem stackSpecificItem) {
-            return stackSpecificItem.getMaxDamage(ItemStackHolder.Static.stack1);
+            return stackSpecificItem.getMaxDamage(StaticHolder.stack1);
         } else {
             return item.getMaxDamage();
         }
