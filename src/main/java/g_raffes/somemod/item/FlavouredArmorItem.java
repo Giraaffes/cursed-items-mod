@@ -50,6 +50,7 @@ public class FlavouredArmorItem extends ArmorItem implements CompoundItem, Stack
         return new ItemStack(displayItem);
     }
 
+
     @Override
     public ArmorMaterial getArmorMaterial(ItemStack stack) {
         return getCompound(stack).flavour.armorMaterial;
@@ -61,13 +62,13 @@ public class FlavouredArmorItem extends ArmorItem implements CompoundItem, Stack
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return getArmorMaterial(stack).getDurability(slot);
+    public float getToughness(ItemStack stack) {
+        return getArmorMaterial(stack).getToughness();
     }
 
     @Override
-    public float getToughness(ItemStack stack) {
-        return getArmorMaterial(stack).getToughness();
+    public int getMaxDamage(ItemStack stack) {
+        return getArmorMaterial(stack).getDurability(slot);
     }
 
     @Override
@@ -84,10 +85,7 @@ public class FlavouredArmorItem extends ArmorItem implements CompoundItem, Stack
         }
     }
 
-    @Override
-    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return getArmorMaterial(stack).getRepairIngredient().test(ingredient);
-    }
+    // TODO: food component + drink and eat sounds
 
     @Override
     public boolean isFireproof(ItemStack stack) {
@@ -101,5 +99,10 @@ public class FlavouredArmorItem extends ArmorItem implements CompoundItem, Stack
 
     private static CompoundType getCompound(ItemStack stack) {
         return CompoundType.fromItemStack(stack);
+    }
+
+    @Override
+    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
+        return getArmorMaterial(stack).getRepairIngredient().test(ingredient);
     }
 }

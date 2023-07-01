@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 
+// For custom overrides i guess
 public record SimpleArmorMaterial(String name, Item repairItem, ArmorMaterial parentMaterial, int durabilityMultiplier, float toughness, float knockbackResistance) implements ArmorMaterial {
     public SimpleArmorMaterial(String name, Item repairItem, ArmorMaterial parentMaterial) {
         this(name, repairItem, parentMaterial, ((ArmorMaterialsAccessor)parentMaterial).getDurabilityMultiplier(), parentMaterial.getToughness(), parentMaterial.getKnockbackResistance());

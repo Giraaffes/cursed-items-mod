@@ -21,11 +21,6 @@ public class FlavouredItem extends Item implements CompoundItem, StackSpecificIt
     }
 
     @Override
-    public ItemStack getDisplayStack() {
-        return new ItemStack(Items.BARRIER);
-    }
-
-    @Override
     public Text getName(ItemStack stack) {
         CompoundType compound = getCompound(stack);
         if (compound.is(CompoundFlavour.CHICKEN, CompoundStyle.ELYTRA)) {
@@ -36,6 +31,12 @@ public class FlavouredItem extends Item implements CompoundItem, StackSpecificIt
             return getCompound(stack).getDefaultName();
         }
     }
+
+    @Override
+    public ItemStack getDisplayStack() {
+        return new ItemStack(Items.BARRIER);
+    }
+
 
     @Override
     public int getMaxCount(ItemStack stack) {
@@ -69,6 +70,8 @@ public class FlavouredItem extends Item implements CompoundItem, StackSpecificIt
         return getCompound(stack).flavour.foodComponent;
     }
 
+    // TODO: drink and eat sounds
+
     @Override
     public boolean isFireproof(ItemStack stack) {
         return getCompound(stack).flavour.fireproof;
@@ -79,6 +82,7 @@ public class FlavouredItem extends Item implements CompoundItem, StackSpecificIt
         return !(isFireproof(stack) && source.isFire());
     }
 
+    // All damageable CompoundItems can be repaired by their respective vanilla ingredients, as it is now
     @Override
     public boolean canRepair(ItemStack stack, ItemStack ingredient) {
         return  !(ingredient.getItem() instanceof CompoundItem)
@@ -89,6 +93,7 @@ public class FlavouredItem extends Item implements CompoundItem, StackSpecificIt
         return CompoundType.fromItemStack(stack);
     }
 
+    // Since super must be first call
     private static Item.Settings settings(boolean hasDamage, boolean isFood) {
         Item.Settings settings = new Item.Settings();
         if (isFood) settings.food(DUMMY_FOOD_COMPONENT);

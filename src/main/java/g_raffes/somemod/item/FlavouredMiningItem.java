@@ -3,7 +3,9 @@ package g_raffes.somemod.item;
 import g_raffes.somemod.api.CompoundType;
 import g_raffes.somemod.item.api.CompoundItem;
 import g_raffes.somemod.item.api.StackSpecificItem;
+import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.*;
@@ -22,32 +24,32 @@ public class FlavouredMiningItem extends MiningToolItem implements CompoundItem,
     }
 
     @Override
-    public ItemStack getDisplayStack() {
-        return new ItemStack(Items.STONE_PICKAXE);
-    }
-
-    @Override
     public Text getName(ItemStack stack) {
         return getCompound(stack).getDefaultName();
     }
 
     @Override
-    public float getAttackDamage(ItemStack stack) {
-        /*int extraDamage = switch (getCompound(stack).style.type) {
-
-            case DEFAULT -> 0;
-            case DAMAGEABLE -> 0;
-            case FOOD -> 0;
-            case HELMET -> 0;
-            case CHESTPLATE -> 0;
-            case LEGGINGS -> 0;
-            case BOOTS -> 0;
-        }*/
+    public ItemStack getDisplayStack() {
+        return new ItemStack(Items.STONE_PICKAXE);
     }
 
     @Override
     public ToolMaterial getToolMaterial(ItemStack stack) {
         return getCompound(stack).flavour.toolMaterial;
+    }
+
+    @Override
+    public boolean isSuitableFor(ItemStack stack, BlockState state) {
+        int miningLevel = getToolMaterial(stack).getMiningLevel();
+        if (state.isIn(BlockTags.NEEDS_DIAMOND_TOOL)) {
+            return miningLevel >= MiningLevels.DIAMOND;
+        } else if (state.isIn(BlockTags.NEEDS_IRON_TOOL)) {
+            return miningLevel >= MiningLevels.IRON;
+        } else if (state.isIn(BlockTags.NEEDS_STONE_TOOL)) {
+            return miningLevel >= MiningLevels.STONE;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -70,6 +72,20 @@ public class FlavouredMiningItem extends MiningToolItem implements CompoundItem,
         return  !(ingredient.getItem() instanceof CompoundItem)
                 && getCompound(stack).flavour.vanillaItem == ingredient.getItem();
     }
+
+    /*@Override
+    public float getAttackDamage(ItemStack stack) {
+        int extraDamage = switch (getCompound(stack).style.type) {
+
+            case DEFAULT -> 0;
+            case DAMAGEABLE -> 0;
+            case FOOD -> 0;
+            case HELMET -> 0;
+            case CHESTPLATE -> 0;
+            case LEGGINGS -> 0;
+            case BOOTS -> 0;
+        }
+    }*/
 
     private static CompoundType getCompound(ItemStack stack) {
         return CompoundType.fromItemStack(stack);

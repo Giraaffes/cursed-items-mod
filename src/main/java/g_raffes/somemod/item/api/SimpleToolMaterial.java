@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
+// For custom overrides i guess
 public record SimpleToolMaterial(Item repairItem, ToolMaterial parentMaterial, int durability, float miningSpeed, float attackDamage) implements ToolMaterial {
     public SimpleToolMaterial(Item repairItem, ToolMaterial parentMaterial) {
         this(repairItem, parentMaterial, parentMaterial.getDurability(), parentMaterial.getMiningSpeedMultiplier(), parentMaterial.getAttackDamage());

@@ -11,6 +11,31 @@ import net.minecraft.sound.SoundEvent;
 import org.jetbrains.annotations.Nullable;
 
 public interface StackSpecificItem extends ItemConvertible {
+    default ToolMaterial getToolMaterial(ItemStack stack) {
+        return ((ToolItem)asItem()).getMaterial();
+    }
+
+    default float getAttackDamage(ItemStack stack) {
+        Item item = asItem();
+        if (item instanceof SwordItem) {
+            return ((SwordItem)item).getAttackDamage();
+        } else {
+            return ((MiningToolItem)item).getAttackDamage();
+        }
+    }
+
+    default ArmorMaterial getArmorMaterial(ItemStack stack) {
+        return ((ArmorItem)asItem()).getMaterial();
+    }
+
+    default int getProtection(ItemStack stack) {
+        return ((ArmorItem)asItem()).getProtection();
+    }
+
+    default float getToughness(ItemStack stack) {
+        return ((ArmorItem)asItem()).getToughness();
+    }
+
     // FIXME? Incompatible with Fabric's InventoryStorage
     default int getMaxCount(ItemStack stack) {
         return asItem().getMaxCount();
@@ -70,30 +95,5 @@ public interface StackSpecificItem extends ItemConvertible {
 
     default boolean canBeNested(ItemStack stack) {
         return asItem().canBeNested();
-    }
-
-    default ArmorMaterial getArmorMaterial(ItemStack stack) {
-        return ((ArmorItem)asItem()).getMaterial();
-    }
-
-    default int getProtection(ItemStack stack) {
-        return ((ArmorItem)asItem()).getProtection();
-    }
-
-    default float getToughness(ItemStack stack) {
-        return ((ArmorItem)asItem()).getToughness();
-    }
-
-    default ToolMaterial getToolMaterial(ItemStack stack) {
-        return ((ToolItem)asItem()).getMaterial();
-    }
-
-    default float getAttackDamage(ItemStack stack) {
-        Item item = asItem();
-        if (item instanceof SwordItem) {
-            return ((SwordItem)item).getAttackDamage();
-        } else {
-            return ((MiningToolItem)item).getAttackDamage();
-        }
     }
 }

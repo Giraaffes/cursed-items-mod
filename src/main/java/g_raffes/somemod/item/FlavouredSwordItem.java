@@ -18,14 +18,15 @@ public class FlavouredSwordItem extends SwordItem implements CompoundItem, Stack
     }
 
     @Override
+    public Text getName(ItemStack stack) {
+        return getCompound(stack).getDefaultName();
+    }
+
+    @Override
     public ItemStack getDisplayStack() {
         return new ItemStack(Items.STONE_SWORD);
     }
 
-    @Override
-    public Text getName(ItemStack stack) {
-        return getCompound(stack).getDefaultName();
-    }
 
     @Override
     public float getAttackDamage(ItemStack stack) {
