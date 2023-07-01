@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "somemod",
+  "version": "${version}",
+
+  "name": "Some mod",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "g_raffes.somemod.Mod"
+    ],
+    "client": [
+      "g_raffes.somemod.ModClient"
+    ]
+  },
+  "mixins": [
+    "somemod.mixins.client.json",
+    "somemod.mixins.common.json",
+    "somemod.mixins.stackspecific.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+
+  "accessWidener": "somemod.accesswidener"
+}

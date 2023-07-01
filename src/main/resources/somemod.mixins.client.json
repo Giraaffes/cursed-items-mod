@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "g_raffes.somemod.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ItemRendererMixin",
+    "JsonUnbakedModelMixin",
+    "SpriteAtlasTextureMixin",
+    "SpriteMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

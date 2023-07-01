@@ -1,0 +1,36 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "g_raffes.somemod.mixin.stackspecific",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractFurnaceBlockEntityMixin",
+    "BundleItemMixin",
+    "CatEntityMixin",
+    "EnchantmentHelperMixin",
+    "GrindstoneScreenHandlerMixin",
+    "HungerManagerMixin",
+    "ItemEntityMixin",
+    "ItemMixin",
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "PlayerInventoryMixin",
+    "RecipeMixin",
+    "RecipesMixin",
+    "RepairItemRecipeMixin",
+    "ScreenHandlerMixin",
+    "ShulkerBoxSlotMixin",
+    "TradeOfferMixin",
+    "WolfEntityMixin",
+    "armor.MobEntityMixin",
+    "armor.PiglinBrainMixin"
+  ],
+  "client": [
+    "ModelOverrideListMixin",
+    "ModelPredicateProviderRegistryMixin",
+    "armor.ArmorFeatureRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
